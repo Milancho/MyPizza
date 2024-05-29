@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazingPizza
+namespace BlazingPizza.Data
 {
     /// <summary>
     /// Represents a customized pizza as part of an order
