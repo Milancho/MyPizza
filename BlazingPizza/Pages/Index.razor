@@ -1,11 +1,13 @@
 @page "/"
+@layout MainLayout
 @using BlazingPizza.Data
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 @using BlazingPizza.Services
 @inject OrderState OrderState
 
-<div class="top-bar">
+
+@* <div class="top-bar">
     <a class="logo" href="">
         <img src="img/logo.svg" />
     </a>
@@ -19,10 +21,9 @@
         <img src="img/bike.svg" />
         <div>My Orders</div>
     </NavLink>
-</div>
+</div> *@
 
-<div class="main">
-  <h1>Blazing Pizzas</h1>
+<div class="main">  
   <ul class="pizza-cards">
     @if (specials != null)
 
