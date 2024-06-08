@@ -1,25 +1,9 @@
-@page "/myorders"
+﻿@page "/myorders"
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
 
-@* <div class="top-bar">
-    <a class="logo" href="">
-        <img src="img/logo.svg" />
-    </a>
-
-    <NavLink href="" class="nav-tab" Match="NavLinkMatch.All">
-        <img src="img/pizza-slice.svg" />
-        <div>Get Pizza</div>
-    </NavLink>
-
-    <NavLink href="myorders" class="nav-tab">
-        <img src="img/bike.svg" />
-        <div>My Orders</div>
-    </NavLink>
-</div> *@
-
 <div class="main">
-    @if (ordersWithStatus == null)
+    @if (ordersWithStatus is null)
     {
         <text>Loading...</text>
     }
@@ -47,7 +31,7 @@
                     @if (@item.StatusText != "Delivered")
                     {
                         <div class="col flex-grow-0">
-                            <a href="myorders/" class="btn btn-success">
+                            <a href="myorders/@item.Order.OrderId" class="btn btn-success">
                                 Track &gt;
                             </a>
                         </div>
@@ -59,11 +43,9 @@
 </div>
 
 @code {
-    List<OrderWithStatus> ordersWithStatus = new List<OrderWithStatus>();
+    List<OrderWithStatus>? ordersWithStatus = new();
 
-    protected override async Task OnParametersSetAsync()
-    {
-      ordersWithStatus = await HttpClient.GetFromJsonAsync<List<OrderWithStatus>>(
-          $"{NavigationManager.BaseUri}orders");
-    }
+    protected override async Task OnParametersSetAsync() =>
+        ordersWithStatus = await HttpClient.GetFromJsonAsync<List<OrderWithStatus>>(
+            $"{NavigationManager.BaseUri}orders");
 }

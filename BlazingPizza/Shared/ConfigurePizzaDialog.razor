@@ -1,14 +1,11 @@
-﻿@using BlazingPizza.Data
 @inject HttpClient HttpClient
 
 <div class="dialog-container">
     <div class="dialog">
-        
         <div class="dialog-title">
-            <h2>@Pizza.Special.Name</h2>
+            <h2>@Pizza.Special!.Name</h2>
             @Pizza.Special.Description
         </div>
-        
         <form class="dialog-body">
             <div>
                 <label>Size:</label>
@@ -26,13 +23,14 @@
             </span>
             <button class="btn btn-success ml-auto" @onclick="OnConfirm">Order ></button>
         </div>
-
     </div>
 </div>
 
 @code {
-
-    [Parameter] public Pizza Pizza { get; set; }
-    [Parameter] public EventCallback OnCancel { get; set; }
-    [Parameter] public EventCallback OnConfirm { get; set; }
+    [Parameter, EditorRequired] 
+    public required Pizza Pizza { get; set; }
+    [Parameter, EditorRequired] 
+    public EventCallback OnCancel { get; set; }
+    [Parameter, EditorRequired] 
+    public EventCallback OnConfirm { get; set; }
 }
