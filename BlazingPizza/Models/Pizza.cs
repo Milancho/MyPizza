@@ -21,8 +21,10 @@ public class Pizza
 
     public List<PizzaTopping> Toppings { get; set; } = default!;
 
-    public decimal GetBasePrice() =>
-        (decimal)Size / DefaultSize * Special?.BasePrice ?? 1;
+   public decimal GetBasePrice() =>
+    Special is { FixedSize: not null }
+        ? Special.BasePrice
+        : (decimal)Size / DefaultSize * Special?.BasePrice ?? 1;
 
     public decimal GetTotalPrice() => GetBasePrice();
 
